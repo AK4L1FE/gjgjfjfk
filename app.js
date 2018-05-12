@@ -14,15 +14,13 @@ Client.on("ready", () => {
 // welcome message
 
 Client.on("guildMemberAdd", member => {
-	   const welcomeChannel = member.guild.channels.find('name', 'welcome');
-                if (!welcomeChannel === null) return;
-   Client.channels.get(welcomeChannel.id).send("Welcome to: " + member.guild.name + " Hope you enjoy it here")
+	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
+	welcomechannel.send("Welcome to: " + member.guild.name + " Hope you enjoy it here")
 });
 
 Client.on("guildMemberRemove", member => {
-   const welcomeChannel = member.guild.channels.find('name', 'welcome');
-                if (!welcomeChannel === null) return;
-   Client.channels.get(welcomeChannel.id).send("Goodbye: " + member.user.username + " from " + member.guild.name)
+	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
+   	welcomechannel.send("Goodbye: " + member.user.username + " from " + member.guild.name)
 });
 
 Client.on("guildCreate", guild => {
