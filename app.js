@@ -67,7 +67,7 @@ Client.on("message", async (message) => {
    } else
 
 	if (command == "help") {
-		const embed = new Discord.richEmbed()
+		const embed = new Discord.RichEmbed()
 		.setColor(0x954D23)
 		.setTitle("Command List:")
 		.addField("w!help", "Will give the current command list")
