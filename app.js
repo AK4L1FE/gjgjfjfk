@@ -43,8 +43,8 @@ Client.on("message", async (message) => {
 	if (command === "say") {
 		message.delete()
                 const embed = new Discord.MessageEmbed()
-		.Color(0x954D23)
-		.Description(args.join(" "));
+		.setColor(0x954D23)
+		.setDescription(args.join(" "));
 		message.channel.send({embed})
 	} else
 
@@ -56,9 +56,9 @@ Client.on("message", async (message) => {
 		   if (text.length < 1) return message.channel.send("Can not announce nothing");
 		   //const colour = args.slice(2).join("");
 		   const embed = new Discord.MessageEmbed()
-		   .Color("0x" + color)
-		   .Title("Important Announcement:")
-		   .Description(text);
+		   .setColor("0x" + color)
+		   .setTitle("Important Announcement:")
+		   .setDescription(text);
 		   message.channel.send("@everyone")
 		   message.channel.send({embed})
 	   }
@@ -66,12 +66,12 @@ Client.on("message", async (message) => {
 
 	if (command == "help") {
 		const embed = new Discord.MessageEmbed()
-		.Color(0x954D23)
-		.Title("Command List:")
-		.Field("w!help", "Will give the current command list")
-		.Field("w!ping", "WIll show the ping time for the bot")
-		.Field("w!say [text]", "Will make the bot say something")
-		.Field("w!announcement [text]", "Will make the bot say an announcement and tag everyone")
+		.setColor(0x954D23)
+		.setTitle("Command List:")
+		.setField("w!help", "Will give the current command list")
+		.setField("w!ping", "WIll show the ping time for the bot")
+		.setField("w!say [text]", "Will make the bot say something")
+		.setField("w!announcement [text]", "Will make the bot say an announcement and tag everyone")
 		message.channel.send({embed})
 	}
 
