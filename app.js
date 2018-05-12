@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const Client = new Discord.Client();
-const superagent = require("superagent");
 const OwnerID = "309081957604786176";
 
 const prefix = "w!"
@@ -50,16 +49,6 @@ Client.on("message", async (message) => {
 		.setDescription(args.join(" "));
 		message.channel.send({embed})
 	} else
-
-   if (command === "cat") {
-	   const { body } = await superagent
-	   .get('aws.random.cat/meow');
-	   const embed = new Discord.RichEmbed()
-	   .setColor(0x954D23)
-	   .setTitle("Meow :cat:")
-	   .setImage(body.file)
-	   message.channel.send({embed})
-   } else
 
    if (command === "announcement") {
 	   if (message.member.hasPermission("ADMINISTRATOR")) {
