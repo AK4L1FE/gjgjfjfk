@@ -74,7 +74,6 @@ Client.on("message", async (message) => {
 		.addField("w!ping", "WIll show the ping time for the bot")
 		.addField("w!say [text]", "Will make the bot say something")
 		.addField("w!announcement [text]", "Will make the bot say an announcement and tag everyone")
-		.addField("w!cat", "Will send a random cat image");
 		message.channel.send({embed})
 	}
 
