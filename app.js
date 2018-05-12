@@ -13,12 +13,12 @@ Client.on("ready", () => {
 
 // welcome message
 
-Client.on("guildMemberAdd", member => {
+Client.on("guildMemberAdd", async member => {
 	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
 	welcomechannel.send("Welcome to: " + member.guild.name + " Hope you enjoy it here")
 });
 
-Client.on("guildMemberRemove", member => {
+Client.on("guildMemberRemove", async member => {
 	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
    	welcomechannel.send("Goodbye: " + member.user.username + " from " + member.guild.name)
 });
