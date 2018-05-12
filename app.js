@@ -13,12 +13,12 @@ Client.on("ready", () => {
 
 // welcome message
 
-Client.on("guildMemberAdd", async member => {
+Client.on("guildMemberAdd", member => {
 	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
 	welcomechannel.send("Welcome to: " + member.guild.name + " Hope you enjoy it here")
 });
 
-Client.on("guildMemberRemove", async member => {
+Client.on("guildMemberRemove", member => {
 	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
    	welcomechannel.send("Goodbye: " + member.user.username + " from " + member.guild.name)
 });
@@ -42,7 +42,7 @@ Client.on("message", async (message) => {
 
 	if (command === "say") {
 		message.delete()
-                const embed = new Discord.RichEmbed()
+                const embed = new Discord.MessageEmbed()
 		.setColor(0x954D23)
 		.setDescription(args.join(" "));
 		message.channel.send({embed})
@@ -55,7 +55,7 @@ Client.on("message", async (message) => {
 		   const text = args.slice(1).join(" ");
 		   if (text.length < 1) return message.channel.send("Can not announce nothing");
 		   //const colour = args.slice(2).join("");
-		   const embed = new Discord.RichEmbed()
+		   const embed = new Discord.MessageEmbed()
 		   .setColor("0x" + color)
 		   .setTitle("Important Announcement:")
 		   .setDescription(text);
@@ -65,7 +65,7 @@ Client.on("message", async (message) => {
    } else
 
 	if (command == "help") {
-		const embed = new Discord.RichEmbed()
+		const embed = new Discord.MessageEmbed()
 		.setColor(0x954D23)
 		.setTitle("Command List:")
 		.addField("w!help", "Will give the current command list")
