@@ -1,80 +1,59 @@
-const Discord = require('discord.js');
-const Client = new Discord.Client();
-const OwnerID = "309081957604786176";
-
-const prefix = "w!"
+const Discord = require("discord.js");
+const settings = require("./settings.json");
+const bot = new Discord.Client();
 
 
 
-Client.on("ready", () => {
-	console.log("online");
-	Client.user.setPresence({ game: { name: `w!help for command list`, type: 0} });
+ bot.on("ready", async () => {
+    console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
+     bot.user.setActivity(";help", {type: 2});
+     
+     });
+
+
+    bot.on('guildMemberAdd', member => {
+      let channel = member.guild.channels.find('name', 'welcome-leave');
+      let memberavatar = member.user.avatarURL
+          if (!channel) return;
+          let embed = new Discord.RichEmbed()
+          .setColor('RANDOM')
+          .setThumbnail(memberavatar)
+          .addField(':bust_in_silhouette: | name : ', `${member}`)
+          .addField(':microphone2: | Welcome!', `Welcome to the server, ${member}`)
+          .addField(':id: | User :', "**[" + `${member.id}` + "]**")
+          .addField(':family_mwgb: | Your are the member', `${member.guild.memberCount}`)
+          .addField("Name", `<@` + `${member.id}` + `>`, true)
+          .addField('Server', `${member.guild.name}`, true )
+          .setFooter(`**${member.guild.name}**`)
+          .setTimestamp()
+  
+          channel.sendEmbed(embed);
+  });
+  bot.on('guildMemberRemove', member => {
+    let channel = member.guild.channels.find('name', 'welcome-leave');
+    let memberavatar = member.user.avatarURL
+        if (!channel) return;
+        let embed2 = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(memberavatar)
+        .addField('Name:', `${member}`)
+        .addField('Has Let the Server', ';(')
+        .addField('Bye Bye :(', 'We will all miss you!')
+        .addField('The server now as', `${member.guild.memberCount}` + " members")
+        .setFooter(`**${member.guild.name}`)
+        .setTimestamp()
+
+        channel.sendEmbed(embed2);
 });
 
-// welcome message
 
-Client.on("guildMemberAdd", member => {
-	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
-	welcomechannel.send("Welcome to: " + member.guild.name + " Hope you enjoy it here")
-});
-
-Client.on("guildMemberRemove", member => {
-	let welcomechannel = member.guild.channels.find(`name`, "ytwitch-welcome-leave");
-   	welcomechannel.send("Goodbye: " + member.user.username + " from " + member.guild.name)
-});
-
-Client.on("guildCreate", guild => {
-	console.log("Some one added the Welcomer bot to a server created by: " + guild.owner.user.username)
-});
-
-Client.on("message", async (message) => {
-	if (message.author.bot) return;
-	if (!message.content.startsWith(prefix)) return;
-	
-	let command = message.content.split(" ")[0];
-	command = command.slice(prefix.length);
-	
-	let args = message.content.split(" ").slice(1);
-	
-	if (command === "ping") {
-		message.channel.send(`Pong! Time took: ${Date.now() - message.createdTimestamp} ms`);
-	} else
-
-	if (command === "say") {
-		message.delete()
-                const embed = new Discord.MessageEmbed()
-		.setColor(0x954D23)
-		.setDescription(args.join(" "));
-		message.channel.send({embed})
-	} else
-
-   if (command === "announcement") {
-	   if (message.member.hasPermission("ADMINISTRATOR")) {
-		   const color = args[0]
-				
-		   const text = args.slice(1).join(" ");
-		   if (text.length < 1) return message.channel.send("Can not announce nothing");
-		   //const colour = args.slice(2).join("");
-		   const embed = new Discord.MessageEmbed()
-		   .setColor("0x" + color)
-		   .setTitle("Important Announcement:")
-		   .setDescription(text);
-		   message.channel.send("@everyone")
-		   message.channel.send({embed})
-	   }
-   } else
-
-	if (command == "help") {
-		const embed = new Discord.MessageEmbed()
-		.setColor(0x954D23)
-		.setTitle("Command List:")
-		.setField("w!help", "Will give the current command list")
-		.setField("w!ping", "WIll show the ping time for the bot")
-		.setField("w!say [text]", "Will make the bot say something")
-		.setField("w!announcement [text]", "Will make the bot say an announcement and tag everyone")
-		message.channel.send({embed})
-	}
-
-});
-
-Client.login("NDQyNzQ0MjIzMjAxMDk5Nzc3.DdDRTg.VOZDYyiomyvp4RuFdxKj5liOqzs"); //replace with your token dont share yours.
+bot.on("message", async message => {
+      if(message.author.bot) return;
+      if(message.channel.type === "dm") return;
+    
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0].toLowerCase();
+    let args = messageArray.slice(1);
+    });
+    
+    bot.login(settings.token);
