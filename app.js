@@ -5,7 +5,7 @@ const bot = new Discord.Client();
 
  bot.on("ready", async () => {
     console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-     bot.user.setActivity("Owner: AK4L1FE", {type: 2});
+     user.setActivity("Owner: AK4L1FE", {type: 2});
      
      });
 
