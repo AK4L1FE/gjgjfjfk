@@ -1,12 +1,11 @@
 const Discord = require("discord.js");
-const settings = require("./settings.json");
 const bot = new Discord.Client();
 
 
 
  bot.on("ready", async () => {
     console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-     bot.user.setActivity(";help", {type: 2});
+     bot.user.setActivity("Owner: AK4L1FE", {type: 2});
      
      });
 
@@ -56,4 +55,4 @@ bot.on("message", async message => {
     let args = messageArray.slice(1);
     });
     
-    bot.login(settings.token);
+    bot.login("NDQyNzQ0MjIzMjAxMDk5Nzc3.DdeUOg.EC7jrRhV8_xbYQwTILKSoUsQibA");
